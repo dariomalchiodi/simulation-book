@@ -1,8 +1,14 @@
-name: simulation-book-environment
+name: example-environment
 channels:
   - conda-forge
 dependencies:
   - python
   - numpy
+  - psutil
+  - toolz
   - matplotlib
+  - dill
   - pandas
+  - partd
+  - bokeh
+  - dask
