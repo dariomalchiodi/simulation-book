@@ -8,9 +8,11 @@ ENV HOME /home/${NB_USER}
 COPY . ${HOME}
 USER root
 RUN chown -R ${NB_UID} ${HOME}
-USER ${NB_USER}
 
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
+
+USER ${NB_USER}
+
 
 RUN mkdir -p /home/jovyan/.jupyter/custom
 
