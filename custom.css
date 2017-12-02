@@ -2,70 +2,97 @@
 @import url('https://fonts.googleapis.com/css?family=Alegreya:400,400i,700,900');
 
 html {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 body {
-/*  font-family: 'Alegreya', serif; /* Make non-code text serif. */
+  counter-reset: sidenote-counter;
 }
 
-div.input {
-  width: 105ex; /* about 80 chars + buffer */
+#ipython_notebook img{
+  display:block;
+  background: url(ds-logo.png) no-repeat;
+  background-size: contain;
+  width: 43px;
+  height: 33px;
+  padding-left: 43px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-div.text_cell {
-  width: 105ex /* instead of 100%, */
+#notebook-container.container {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
 }
 
-div.text_cell_render {
-  font-size: 1rem;
-  line-height: 145%; /* added for some line spacing of text. */
+div.header {
+  font-size: 0.8rem;
 }
 
-div.text_cell_render h1 {
-  font-size: 30pt;
-  font-weight: 400;
-  margin-top: 4rem;
-  margin-bottom: 1.5rem;
-  line-height: 1
+div.footer {
+  font-size: 0.8rem;
 }
 
-div.text_cell_render h2 {
-  /* font-size: 14pt;
-  font-weight: bold; */
-  font-style: italic;
-  font-weight: 400;
-  margin-top: 2.1rem;
-  margin-bottom: 0;
-  font-size: 2.2rem;
-  line-height: 1;
+div.cell.text_cell {
+  font-family: 'Alegreya', serif; /* Make non-code text serif. */
 }
 
-div.text_cell_render h3 {
-  font-style: italic;
-  font-weight: 400;
-  font-size: 1.7rem;
-  margin-top: 2rem;
-  margin-bottom: 0;
-  line-height: 1;
+div.cell.selected {
+  border-color: white;
+}
+
+div.cell.code_cell.selected {
+  border-color: white;
 }
 
 .CodeMirror {
   font-family: 'Fira code';
 }
 
+.bs-callout {
+  width: 100%;
+  padding: 5%;
+  margin: 5% 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
 
-.sidenote, .marginnote {
-  float: right;
-  clear: right;
-  margin-right: -60%;
-  width: 50%;
+.bs-callout h4 {
   margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.bs-callout p:last-child {
   margin-bottom: 0;
-  font-size: 1.1rem;
-  line-height: 1.3;
-  vertical-align: baseline;
-  position: relative; }
+}
+
+.bs-callout code {
+  border-radius: 3px;
+}
+
+.bs-callout+.bs-callout {
+  margin-top: -5px;
+}
+
+.bs-callout-default {
+  border-left-color: #777;
+}
+
+.bs-callout-default h4 {
+  color: #777;
+}
+
+.bs-callout-primary {
+  border-left-color: #428bca;
+}
+
+.bs-callout-primary h4 {
+  color: #428bca;
+}
 
 .sidenote-number {
   counter-increment: sidenote-counter;
@@ -95,68 +122,161 @@ blockquote .sidenote, blockquote .marginnote {
   text-align: left;
 }
 
-.reveal p {
-  color: white;
+.marginnote > code, .sidenote > code {
+  font-size: 1rem;
 }
-.reveal ul, ol {
-  color: white;
-}
-div.output_area pre {
-  color: white;
-}
-div.output_stderr {
-  background: #F00;
-}
-.reveal table th, .reveal table td {
-  color: white;
-}
- 
-i#help_b {
+
+input.margin-toggle {
   display: none;
 }
 
-i#exit_b {
-  position: fixed;
-  font-size: 2em;
-  top: auto !important;
-  bottom: 0.5em;
+label.sidenote-number {
+  display: inline;
 }
 
-.navigate-left {
-  position: fixed;
-  font-size: 2em;
-  top: auto !important;
-  bottom: 0.5em;
-  right: 5em;
-}
-.navigate-down {
-  font-size: 2em;
-  bottom: 0.5em;
-  right: 6em;
-}
-.navigate-up {
-  position: fixed;
-  font-size: 2em;
-  top: auto !important;
-  bottom: 0.5em;
-  left: auto !important;
-  right: 4em;
-}
-.navigate-right {
-  position: fixed;
-  font-size: 2em;
-  top: auto !important;
-  bottom: 0.5em;
-  right: 2em;
+label.margin-toggle:not(.sidenote-number) {
+  display: inline;
 }
 
-.slide-number {
-  position: fixed;
-  font-size: 1.5em !important;
-  top: auto !important;
-  bottom: 1.2em !important;
-  left: auto !important;
-  right: 4em !important;
+.sidenote, .marginnote {
+  display: none;
 }
 
+.margin-toggle:checked + .sidenote,
+.margin-toggle:checked + .marginnote {
+  display: block;
+  float: left;
+  left: 1rem;
+  clear: both;
+  width: 95%;
+  margin: 1rem 2.5%;
+  vertical-align: baseline;
+  position: relative;
+  font-size: 0.8rem;
+  padding-left: 1ex;
+  text-indent:-1ex;
+}
 
+label {
+  cursor: pointer;
+}
+
+div.text_cell_render {
+  font-size: 1rem;
+  line-height: 145%; /* added for some line spacing of text. */
+}
+
+div.text_cell_render h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+  line-height: 1
+}
+
+div.text_cell_render h2 {
+  font-weight: 600;
+  margin-top: 1.1rem;
+  margin-bottom: 0;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+div.text_cell_render h3 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+span.newthought {
+  font-variant: small-caps;
+  font-size: 1.2rem;
+}
+
+/* Desktop & tablet */
+@media only (min-width: 760px) {
+
+  html {
+    font-size: 20px !important;
+  }
+
+  body {
+    max-width: 1400px;
+  }
+
+  div.input {
+    width: 105ex; /* about 80 chars + buffer */
+  }
+
+  div.text_cell_render p {
+    width: 74ex; /* instead of 100%, */
+    margin-left: -0.5ex;
+  }
+
+  table.table {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  table.table caption, figure caption {
+    text-align: center;
+    font-family: 'Alegreya', serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  table.table td, table.table th {
+    font-family: 'Alegreya', serif;
+    font-size: 0.8rem;
+  }
+
+  div.text_cell .alert {
+    width: 74ex;
+  }
+
+  div.text_cell li {
+    width: 74ex;
+  }
+
+  div.text_cell .alert li {
+    width: 62ex;
+  }
+
+}
+
+/* Smartphones */
+@media (max-width: 760px) {
+
+  html {
+    font-size: 20px;
+  }
+
+  div.text_cell {
+    width: 98%;
+  }
+
+/*  div#notebook{
+    width: 100%;
+    overflow: scroll;
+  }
+
+  */
+  div.inner_cell {
+    width: 100%;
+  }
+
+  div.text_cell_render {
+    line-height: 145%; /* added for some line spacing of text. */
+  }
+
+  div.input {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+ 
+  div.output_subarea {
+    max-width: 100%;
+  }
+}
