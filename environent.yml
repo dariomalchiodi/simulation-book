@@ -1,0 +1,8 @@
+name: simulation-book-environment
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - numpy
+  - matplotlib
+  - pandas
