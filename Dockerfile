@@ -10,6 +10,8 @@ USER root
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
+RUN jupiter nbextension enable --py --sys-prefix widgetsnbextension
+
 RUN mkdir -p /home/jovyan/.jupyter/custom
 
 ADD custom.css /home/jovyan/.jupyter/custom/
