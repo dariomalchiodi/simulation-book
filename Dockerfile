@@ -8,10 +8,6 @@ ENV HOME /home/${NB_USER}
 
 USER root
 
-# Make sure the contents of our repo are in ${HOME}
-COPY . ${HOME}
-RUN chown -R ${NB_UID} ${HOME}
-
 # libav-tools for matplotlib anim
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -41,9 +37,13 @@ RUN conda install -c conda-forge jupyter_contrib_nbextensions
 RUN jupyter nbextension enable hide_input/main
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 
-USER ${NB_USER}
-
-
 RUN mkdir -p /home/jovyan/.jupyter/custom
 
 ADD custom.css /home/jovyan/.jupyter/custom/
+
+USER ${NB_USER}
+
+# Make sure the contents of our repo are in ${HOME}
+COPY . ${HOME}
+RUN chown -R ${NB_UID} ${HOME}
+
